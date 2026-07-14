@@ -1,0 +1,194 @@
+/* ==========================================
+   LAYOUT PRINCIPAL (Estilo UNMSM Guinda)
+   ========================================== */
+.dashboard-container {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #5a1818; 
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  gap: 20px;
+}
+
+/* ==========================================
+   SIDEBAR CORPORATIVO
+   ========================================== */
+.sidebar {
+  width: 290px;
+  background-color: #f5f6f8;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 15px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  padding-left: 10px;
+}
+
+.logo-icon {
+  font-size: 35px;
+  background-color: #2b112c;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text .main-title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+.logo-text .sub-title {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Identificador Marrón del Empleado */
+.user-profile {
+  background-color: #4a1212;
+  color: white;
+  padding: 12px 15px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.sidebar .menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.sidebar .menu-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  color: white;
+  background-color: #0c56bd;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar .menu-item:hover {
+  background-color: #094396;
+}
+
+/* Ítem Activo "Publicar nueva oferta" */
+.sidebar .menu-item.active {
+  background-color: #ff7f27 !important;
+  color: white;
+  position: relative;
+}
+
+.sidebar .menu-item.active::after {
+  content: "👉";
+  position: absolute;
+  right: 10px;
+  font-size: 16px;
+}
+
+.sidebar .icon {
+  margin-right: 12px;
+  font-style: normal;
+}
+
+.btn-logout {
+  width: 100%;
+  background-color: #5a1818;
+  border: 1px solid #7c2525;
+  padding: 14px;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ==========================================
+   MODALES FLOTANTES E INTERACTIVOS (Añadido aquí)
+   ========================================== */
+/* Fondo oscuro que cubre toda la pantalla */
+.retro-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); /* Oscurece el fondo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Asegura que se ponga encima de todo */
+}
+
+/* Caja del Mensaje del Modal */
+.retro-modal-box {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 100%;
+}
+
+.retro-modal-box h3 {
+  color: #2b1111;
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.retro-modal-box p {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Botón Aceptar estilo Retro / Sistema */
+.btn-retro {
+  background-color: #ff7f27;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-retro:hover {
+  background-color: #e0691b;
+}
+
+/* ==========================================
+   MEDIA QUERIES (Siempre al final)
+   ========================================== */
+@media (max-width: 992px) {
+  .dashboard-container { flex-direction: column; }
+  .sidebar { width: 100%; }
+  .form-sections-grid { grid-template-columns: 1fr; }
+  .form-inputs-grid { grid-template-columns: 1fr; }
+  .full-width-input { grid-column: span 1; }
+}

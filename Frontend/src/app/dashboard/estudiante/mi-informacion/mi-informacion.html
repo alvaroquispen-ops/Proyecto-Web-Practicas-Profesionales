@@ -1,0 +1,82 @@
+<main style="padding: 24px; font-family: sans-serif;">
+
+  <header style="text-align: center; margin-bottom: 25px;">
+    <h1 style="color: white; font-size: 1.6rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin: 0;">
+      ------------------- MI INFORMACIÓN -------------------
+    </h1>
+  </header>
+
+  <section style="background-color: white; border-radius: 10px; padding: 22px 26px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border-left: 6px solid #f37022; margin-bottom: 25px;">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+      <span style="font-size: 1.4rem;">👋</span>
+      <h2 style="margin: 0; font-size: 1.15rem; color: #222;">¡Bienvenido(a) a tu Panel de Perfil!</h2>
+    </div>
+    <p style="margin: 0; color: #555; font-size: 0.92rem; line-height: 1.5;">
+      En esta sección puedes visualizar toda tu información académica y personal registrada en el sistema.
+      Estos datos permiten validar tu identidad frente a las empresas y a tu docente a cargo.
+    </p>
+  </section>
+
+  <h2 style="color: white; font-size: 1.05rem; margin-bottom: 12px;">Mis Datos Personales (Desde el Registro)</h2>
+
+  <section style="background-color: white; border-radius: 10px; padding: 22px 26px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+
+      <div>
+        <label style="display: block; font-size: 0.75rem; font-weight: bold; color: #888; text-transform: uppercase; margin-bottom: 6px;">Nombre Completo</label>
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 10px 12px; color: #222; font-weight: 500;">{{ nombreCompleto || 'No registrado' }}</div>
+      </div>
+
+      <div>
+        <label style="display: block; font-size: 0.75rem; font-weight: bold; color: #888; text-transform: uppercase; margin-bottom: 6px;">Rol de Sistema</label>
+        <div style="background-color: #fdf3d7; border-radius: 6px; padding: 10px 12px; color: #8a6d1a; font-weight: bold;">Estudiante</div>
+      </div>
+
+      <div>
+        <label style="display: block; font-size: 0.75rem; font-weight: bold; color: #888; text-transform: uppercase; margin-bottom: 6px;">Correo Institucional</label>
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 10px 12px; color: #222; font-weight: 500;">{{ correo || 'No registrado' }}</div>
+      </div>
+
+      <div>
+        <label style="display: block; font-size: 0.75rem; font-weight: bold; color: #888; text-transform: uppercase; margin-bottom: 6px;">DNI</label>
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 10px 12px; color: #222; font-weight: 500;">{{ dni || 'No registrado' }}</div>
+      </div>
+
+      <div>
+        <label style="display: block; font-size: 0.75rem; font-weight: bold; color: #888; text-transform: uppercase; margin-bottom: 6px;">Género</label>
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 10px 12px; color: #222; font-weight: 500;">{{ genero || 'No registrado' }}</div>
+      </div>
+
+      <div>
+        <label style="display: block; font-size: 0.75rem; font-weight: bold; color: #888; text-transform: uppercase; margin-bottom: 6px;">Fecha de Nacimiento</label>
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 10px 12px; color: #222; font-weight: 500;">{{ fechaNacimiento || 'No registrado' }}</div>
+      </div>
+
+      <div>
+        <label style="display: block; font-size: 0.75rem; font-weight: bold; color: #888; text-transform: uppercase; margin-bottom: 6px;">Carrera</label>
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 10px 12px; color: #222; font-weight: 500;">{{ carrera || 'No registrado' }}</div>
+      </div>
+
+      <div>
+        <label style="display: block; font-size: 0.75rem; font-weight: bold; color: #888; text-transform: uppercase; margin-bottom: 6px;">Curso</label>
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 10px 12px; color: #222; font-weight: 500;">{{ curso || 'No registrado' }}</div>
+      </div>
+
+      <div>
+        <label style="display: block; font-size: 0.75rem; font-weight: bold; color: #888; text-transform: uppercase; margin-bottom: 6px;">Código de Estudiante</label>
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 10px 12px; color: #222; font-weight: 500;">{{ codigoEstudiante || 'No registrado' }}</div>
+      </div>
+
+      <div>
+        <label style="display: block; font-size: 0.75rem; font-weight: bold; color: #888; text-transform: uppercase; margin-bottom: 6px;">Docente a Cargo</label>
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 10px 12px; color: #222; font-weight: 500;">{{ docenteACargo || 'No asignado' }}</div>
+      </div>
+
+      <div>
+        <label style="display: block; font-size: 0.75rem; font-weight: bold; color: #888; text-transform: uppercase; margin-bottom: 6px;">Institución / Facultad</label>
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 10px 12px; color: #222; font-weight: 500;">UNMSM - FISI</div>
+      </div>
+
+    </div>
+  </section>
+</main>

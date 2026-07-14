@@ -1,0 +1,302 @@
+/* ==========================================
+   LAYOUT PRINCIPAL (Fondo Guinda/Marrón)
+   ========================================== */
+.dashboard-container {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #5a1818; /* Tono guinda del mockup */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  gap: 20px;
+}
+
+/* ==========================================
+   SIDEBAR
+   ========================================== */
+.sidebar {
+  width: 280px;
+  background-color: #f5f6f8;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 15px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+/* Identidad Visual UNMSM */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  padding-left: 10px;
+}
+
+.logo-icon {
+  font-size: 35px;
+  background-color: #2b112c;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text .main-title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+.logo-text .sub-title {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Perfil de Docente */
+.user-profile {
+  background-color: #5a1818;
+  color: white;
+  padding: 12px 15px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+/* Menú con ítems azules */
+.sidebar .menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.sidebar .menu-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  color: white;
+  background-color: #0c56bd;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar .menu-item:hover {
+  background-color: #094396;
+}
+
+/* Ítem Activo Naranja */
+.sidebar .menu-item.active {
+  background-color: #ff7f27 !important;
+  color: white;
+  position: relative;
+}
+
+.sidebar .menu-item.active::after {
+  content: "👉";
+  position: absolute;
+  right: 10px;
+  font-size: 16px;
+}
+
+.sidebar .icon {
+  margin-right: 12px;
+  font-style: normal;
+}
+
+.btn-logout {
+  width: 100%;
+  background-color: #5a1818;
+  border: 1px solid #7c2525;
+  padding: 14px;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ==========================================
+   PANEL DERECHO
+   ========================================== */
+.main-content {
+  flex: 1;
+  background-color: #2b1111; /* Fondo oscuro interno */
+  border-radius: 10px;
+  padding: 30px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.content-header .main-title-section {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 0 0 25px 0;
+  letter-spacing: 1px;
+}
+
+/* Caja de Búsqueda Compacta */
+.search-box-card {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  max-width: 450px; /* Ancho ajustado al tamaño del mockup */
+}
+
+.search-inputs-inline {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.search-inputs-inline .input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.search-inputs-inline label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #444;
+}
+
+.search-inputs-inline select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #999;
+  background-color: white;
+  outline: none;
+}
+
+.btn-search {
+  background-color: #ff7f27;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  height: 38px;
+}
+
+/* Sección de Resultados */
+.results-heading-section h2 {
+  font-size: 16px;
+  color: #dfcfcf;
+  margin: 0 0 15px 0;
+  font-weight: normal;
+}
+
+.results-container-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px;
+}
+
+.contracts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Filas Naranjas Estilo Mockup */
+.contract-item-orange {
+  background-color: #ff7f27;
+  border-radius: 12px;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.left-row-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.briefcase-icon {
+  font-size: 24px;
+  color: #0c56bd;
+}
+
+.student-name-box {
+  background-color: white;
+  color: #333;
+  padding: 8px 25px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 220px;
+}
+
+/* Acciones y Estados a la derecha */
+.right-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-action-blue {
+  background-color: #0c56bd;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Estados (Badges) */
+.badge {
+  padding: 8px 18px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.badge-white {
+  background-color: white;
+  color: #777;
+}
+
+.badge-yellow {
+  background-color: #fce14c;
+  color: #333;
+}
+
+.badge-green {
+  background-color: #87ff43;
+  color: #333;
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+  .dashboard-container { flex-direction: column; }
+  .sidebar { width: 100%; }
+  .contract-item-orange { flex-direction: column; gap: 15px; align-items: flex-start; }
+  .right-row-actions { width: 100%; justify-content: space-between; flex-wrap: wrap; }
+}

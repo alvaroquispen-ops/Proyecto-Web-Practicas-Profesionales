@@ -1,0 +1,137 @@
+<div class="register-page">
+  <div class="register-card">
+    <h1>Crear cuenta</h1>
+    <p class="subtitle">Selecciona el tipo de cuenta que deseas crear</p>
+
+    <div class="role-selector">
+      <button (click)="setRole('Estudiante')" [class.active]="selectedRole === 'Estudiante'">Estudiante</button>
+      <button (click)="setRole('Empresa')" [class.active]="selectedRole === 'Empresa'">Empresa</button>
+      <button (click)="setRole('Profesor')" [class.active]="selectedRole === 'Profesor'">Profesor</button>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form-grid" [ngSwitch]="selectedRole">
+      
+      <ng-container *ngSwitchCase="'Estudiante'">
+        <div class="input-group">
+          <label>Nombres</label>
+          <input formControlName="nombres" placeholder="Victor William">
+        </div>
+        <div class="input-group">
+          <label>Apellidos</label>
+          <input formControlName="apellidos" placeholder="Casas Soto">
+        </div>
+        <div class="input-group">
+          <label>Género</label>
+          <select formControlName="genero">
+            <option value="">Seleccionar</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Fecha de nacimiento</label>
+          <input type="date" formControlName="fechaNacimiento">
+        </div>
+        <div class="input-group">
+          <label>DNI</label>
+          <input formControlName="dni" placeholder="12345678">
+        </div>
+        <div class="input-group">
+          <label>Carrera</label>
+          <input formControlName="carrera" placeholder="Ingeniería de Software">
+        </div>
+        <div class="input-group">
+          <label>Curso</label>
+          <input formControlName="curso" placeholder="Prácticas pre profesionales I">
+        </div>
+        <div class="input-group">
+          <label>Docente a cargo</label>
+          <input formControlName="docenteCargo" placeholder="Juan Valdez Vera">
+        </div>
+        <div class="input-group">
+          <label>Código de estudiante</label>
+          <input formControlName="codigoEstudiante" placeholder="23200666">
+        </div>
+        <div class="input-group">
+          <label>Correo Institucional</label>
+          <input formControlName="correo" placeholder="victor.casas@unmsm.edu.pe">
+        </div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'Empresa'">
+        <div class="input-group">
+          <label>Nombre de la empresa</label>
+          <input formControlName="nombreEmpresa" placeholder="La positiva">
+        </div>
+        <div class="input-group">
+          <label>RUC</label>
+          <input formControlName="ruc" placeholder="12345679">
+        </div>
+        <div class="input-group">
+          <label>Nombre del contacto</label>
+          <input formControlName="nombreContacto" placeholder="Juan Valdez Pérez">
+        </div>
+        <div class="input-group">
+          <label>Cargo</label>
+          <input formControlName="cargo" placeholder="Coordinador de RRHH">
+        </div>
+        <div class="input-group">
+          <label>Correo corporativo</label>
+          <input formControlName="correo" placeholder="rrh@lapositiva.com.pe">
+        </div>
+        <div class="input-group">
+          <label>Teléfono</label>
+          <input formControlName="telefono" placeholder="999 165 233">
+        </div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'Profesor'">
+        <div class="input-group">
+          <label>Nombres</label>
+          <input formControlName="nombres" placeholder="Mary">
+        </div>
+        <div class="input-group">
+          <label>Apellidos</label>
+          <input formControlName="apellidos" placeholder="Lizarbe Pérez">
+        </div>
+        <div class="input-group">
+          <label>DNI</label>
+          <input formControlName="dni" placeholder="333445678">
+        </div>
+        <div class="input-group">
+          <label>Correo Institucional</label>
+          <input formControlName="correo" placeholder="marylizarbe@unmsm.edu.pe">
+        </div>
+        <div class="input-group">
+          <label>Carrera</label>
+          <input formControlName="carrera" placeholder="Ingeniería de software">
+        </div>
+        <div class="input-group">
+          <label>Código del curso</label>
+          <input formControlName="codigoCurso" placeholder="ppp01">
+        </div>
+        <div class="input-group">
+          <label>Curso</label>
+          <input formControlName="curso" placeholder="Prácticas pre profesionales I">
+        </div>
+      </ng-container>
+
+      <hr>
+
+      <div class="input-group">
+        <label>Contraseña</label>
+        <input type="password" formControlName="password" placeholder="*********">
+      </div>
+      <div class="input-group">
+        <label>Confirmar contraseña</label>
+        <input type="password" formControlName="confirmPassword" placeholder="*********">
+      </div>
+
+      <button type="submit" class="btn-submit full-width" [disabled]="!isCurrentFormValid()">Registrar</button>
+
+      <div class="login-prompt full-width">
+        ¿Ya tienes cuenta? <a routerLink="/login">Ingresar al sistema</a>
+      </div>
+    </form>
+  </div>
+</div>

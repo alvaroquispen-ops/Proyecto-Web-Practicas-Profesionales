@@ -1,0 +1,152 @@
+/* ==========================================================================
+   1. CONTENEDOR PRINCIPAL (Fondo Guinda y Centrado Absoluto)
+   ========================================================================== */
+.register-page {
+  background-color: #701a1a; /* Tu fondo guinda */
+  min-height: 100vh;
+  width: 100vw;
+  display: flex !important;
+  justify-content: center !important; /* Centrado de izquierda a derecha */
+  align-items: center !important;     /* Centrado de arriba a abajo */
+  padding: 40px 20px;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   2. TARJETA DE REGISTRO (Look Cuadrado y Proporcionado)
+   ========================================================================== */
+.register-card {
+  background: white;
+  width: 100%;
+  max-width: 1100px;    /* 👈 Ampliado para que no se estire hacia abajo y sea más cuadrada */
+  border-radius: 40px;  /* Bordes muy redondeados impecables */
+  padding: 45px 50px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  color: #111;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+
+/* Selector de Roles / Tabs */
+.role-selector {
+  display: flex;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  padding: 5px;
+  margin-bottom: 35px;
+}
+
+.role-selector button {
+  flex: 1;
+  border: none;
+  padding: 12px;
+  background: transparent;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: 0.3s;
+  color: #555;
+}
+
+.role-selector button.active {
+  background-color: #ffcc00; /* Amarillo */
+  color: black;
+}
+
+/* ==========================================================================
+   3. REPARTO DEL FORMULARIO (Grid de 3 Columnas Horizontales)
+   ========================================================================== */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 👈 Configurado a 3 columnas para aplanar el diseño */
+  gap: 20px;
+}
+
+/* Elementos que toman todo el ancho de la tarjeta */
+.full-width {
+  grid-column: span 3; /* 👈 Se adapta dinámicamente a las 3 columnas */
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-weight: 700;
+  font-size: 14px;
+  color: #111;
+}
+
+.input-group input, .input-group select {
+  padding: 12px 20px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 20px; /* Inputs redondeados como tu boceto */
+  font-size: 14px;
+  background-color: #fff;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.input-group input:focus {
+  border-color: #0346c8;
+  outline: none;
+}
+
+/* Botón de Envío */
+.btn-submit {
+  background-color: #0346c8; /* Azul */
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.btn-submit:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 20px 0;
+  grid-column: span 3; /* 👈 Cruza las 3 columnas de lado a lado */
+}
+
+/* ==========================================================================
+   4. RESPONSIVE (Para celulares se vuelve a poner en 1 sola columna)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .full-width {
+    grid-column: span 1;
+  }
+  hr {
+    grid-column: span 1;
+  }
+  .register-card {
+    padding: 30px 20px;
+    border-radius: 24px;
+  }
+}

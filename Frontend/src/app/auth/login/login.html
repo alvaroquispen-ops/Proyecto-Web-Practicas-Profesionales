@@ -1,0 +1,52 @@
+<div class="auth-container">
+  <div class="login-card-wrapper">
+    
+    <div class="form-section">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h1>Portal de Prácticas</h1>
+        <p class="subtitle">Gestión Pre-Profesionales</p>
+
+        <div class="user-type-selector">
+          <button type="button" (click)="setUserType('Alumno')" [class.active]="loginForm.get('userType')?.value === 'Alumno'">
+            <span class="icon">&#127891;</span> Alumno
+          </button>
+          <button type="button" (click)="setUserType('Docente')" [class.active]="loginForm.get('userType')?.value === 'Docente'">
+            <span class="icon">&#129489;&#8205;&#127981;</span> Docente
+          </button>
+          <button type="button" (click)="setUserType('Empresa')" [class.active]="loginForm.get('userType')?.value === 'Empresa'">
+            <span class="icon">&#127981;</span> Empresa
+          </button>
+        </div>
+
+        <div class="test-access-alert">
+          <strong>Acceso de Prueba:</strong> Clave es 123456
+        </div>
+
+        <div class="input-group">
+          <label>Usuario (Estudiante)</label>
+          <input type="email" formControlName="username" placeholder="estudiante@universidad.edu.pe">
+          <div *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.errors?.['email']" class="error-msg">
+            Debe ser un correo válido.
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Contraseña</label>
+          <input type="password" formControlName="password" placeholder="••••••">
+        </div>
+
+        <button type="submit" class="btn-primary" [disabled]="loginForm.invalid">Ingresar al Sistema</button>
+
+        <div class="register-prompt">
+          ¿No tienes una cuenta académica o empresarial?
+          <a routerLink="/registro">Registrarse en el Sistema</a>
+        </div>
+      </form>
+    </div>
+
+    <div class="image-section">
+     <img src="images/login-workers.jpg" alt="Personas trabajando con laptops">
+    </div>
+
+  </div>
+</div>

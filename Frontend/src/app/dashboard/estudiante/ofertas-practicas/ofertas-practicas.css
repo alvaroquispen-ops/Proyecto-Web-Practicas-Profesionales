@@ -1,0 +1,170 @@
+/* ==========================================
+   PANEL DERECHO
+   ========================================== */
+.main-content {
+  flex: 1;
+  background-color: #2b1111; /* Fondo interno guinda oscurísimo del mockup */
+  border-radius: 10px;
+  padding: 30px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.content-header .main-title-section {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 0 0 10px 0;
+  letter-spacing: 1px;
+}
+
+.content-header .subtitle {
+  color: #dfcfcf;
+  text-align: center;
+  margin: 0 0 25px 0;
+  font-size: 14px;
+}
+
+/* Contenedor de Filtros Blanco */
+.search-box-card {
+  background-color: white;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+}
+
+/* Grid de 6 campos (3 columnas en pantallas grandes) + botón abajo */
+.search-inputs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-field label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #444;
+}
+
+/* Estilo para los combobox select */
+.input-field select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #999;
+  background-color: #fff;
+  outline: none;
+}
+
+/* Botón Buscar Naranja alineado a la derecha abajo */
+.btn-container {
+  grid-column: span 3;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px;
+}
+
+.btn-search {
+  background-color: #ff7f27;
+  color: white;
+  border: none;
+  padding: 12px 35px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* Sección Resultados */
+.results-heading-section h2 {
+  font-size: 18px;
+  color: white;
+  margin: 0 0 15px 0;
+}
+
+.results-container-card {
+  background-color: transparent;
+  padding: 0;
+}
+
+.jobs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Tarjetas Estilo Azul del Mockup */
+.job-item-blue {
+  background-color: #0b58ca;
+  border-radius: 15px;
+  padding: 20px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: white;
+}
+
+.job-header-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.job-company-logo {
+  font-size: 28px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.job-info-text h3 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.job-info-text .company-name {
+  margin: 0;
+  font-size: 14px;
+  color: #dae5f7;
+}
+
+/* Fila del Botón Ver Más */
+.job-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-view-more {
+  background-color: white;
+  color: #0b58ca;
+  border: none;
+  padding: 10px 60px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* El segundo botón en tu mockup es amarillo */
+.yellow-btn {
+  background-color: #fcd434;
+  color: #333;
+}
+
+/* Ajustes para Responsivo */
+@media (max-width: 992px) {
+  .dashboard-container { flex-direction: column; }
+  .sidebar { width: 100%; }
+  .search-inputs-grid { grid-template-columns: 1fr; }
+  .btn-container { grid-column: span 1; }
+}

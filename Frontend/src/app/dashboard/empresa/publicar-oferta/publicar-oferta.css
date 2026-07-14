@@ -1,0 +1,159 @@
+/* ==========================================
+   PANEL DE PUBLICACIÓN (CONTENIDO PRINCIPAL)
+   ========================================== */
+.main-content {
+  flex: 1;
+  background-color: #2b1111; 
+  border-radius: 10px;
+  padding: 30px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.content-header .main-title-section {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 0 0 30px 0;
+  letter-spacing: 1px;
+}
+
+/* Grid de Formulario de dos Columnas Asimétricas */
+.form-sections-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.left-form-column, .right-form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Cajas contenedoras blancas */
+.form-card-block {
+  background-color: white;
+  border-radius: 15px;
+  padding: 22px;
+  box-sizing: border-box;
+}
+
+.form-card-block h2 {
+  font-size: 15px;
+  color: #5a1818;
+  margin: 0 0 15px 0;
+  font-weight: bold;
+}
+
+/* Grid interno para campos de entrada */
+.form-inputs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.full-width-input {
+  grid-column: span 2;
+}
+
+.input-field label {
+  font-weight: bold;
+  font-size: 13px;
+  color: #222;
+}
+
+.input-field input, .input-field textarea {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 20px; /* Bordes ovalados como en el mockup */
+  font-size: 13px;
+  color: #555;
+  background-color: #fff;
+  outline: none;
+  font-family: Arial, sans-serif;
+}
+
+.input-field textarea {
+  border-radius: 12px;
+  resize: vertical;
+}
+
+/* Estilo para el input de Modalidad centrado y reducido */
+.input-rounded-pill {
+  max-width: 200px;
+}
+
+/* Estilo para las Listas con Viñetas */
+.bullet-list-style {
+  margin: 0;
+  padding-left: 20px;
+  color: #444;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.bullet-list-style li {
+  margin-bottom: 5px;
+}
+
+/* Contenedor del Botón de Envío */
+.submit-action-container {
+  display: flex;
+  width: 100%;
+}
+
+.btn-submit-offer {
+  background-color: #ff7f27;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.2s;
+}
+
+.btn-submit-offer:hover {
+  background-color: #e0691b;
+}
+
+/* ==========================================================================
+   AJUSTES PARA INPUTS DINÁMICOS Y FECHAS (Añadir antes del @media)
+   ========================================================================== */
+.input-field input[type="date"] {
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Darle un color sutil a los placeholders para que sepa qué escribir */
+.input-field input::placeholder, 
+.input-field textarea::placeholder {
+  color: #bbb;
+  font-style: italic;
+}
+
+/* Responsividad para pantallas medianas o celulares */
+@media (max-width: 992px) {
+  .dashboard-container { flex-direction: column; }
+  .sidebar { width: 100%; }
+  .form-sections-grid { grid-template-columns: 1fr; }
+  .form-inputs-grid { grid-template-columns: 1fr; }
+  .full-width-input { grid-column: span 1; }
+}

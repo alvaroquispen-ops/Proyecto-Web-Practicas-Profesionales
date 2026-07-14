@@ -1,0 +1,49 @@
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo-container">
+        <span class="logo-icon">🎓</span>
+        <div class="logo-text">
+          <span class="main-title">FISI Prácticas</span>
+          <span class="sub-title">UNMSM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-profile">
+      <span class="user-icon">👤</span>
+      <span class="user-name">Empleado : Juan Valdéz</span>
+    </div>
+
+    <nav class="menu">
+      <a class="menu-item" [class.active]="vistaActual === 'publicar'" (click)="cambiarVista('publicar')">
+        <i class="icon">➕</i> Publicar nueva oferta
+      </a>
+      <a class="menu-item" [class.active]="vistaActual === 'mis-ofertas'" (click)="cambiarVista('mis-ofertas')">
+        <i class="icon">💼</i> Mis ofertas de prácticas
+      </a>
+      <a class="menu-item" [class.active]="vistaActual === 'historial'" (click)="cambiarVista('historial')">
+        <i class="icon">📋</i> Historial de postulaciones
+      </a>
+    </nav>
+    
+    <div class="sidebar-footer">
+      <button class="btn-logout" (click)="onLogout()">Cerrar sesión</button>
+    </div>
+  </aside>
+
+  <div class="content-area" style="flex: 1; display: flex; flex-direction: column;">
+    <app-publicar-oferta *ngIf="vistaActual === 'publicar'"></app-publicar-oferta>
+    <app-mis-ofertas *ngIf="vistaActual === 'mis-ofertas'"></app-mis-ofertas>
+    <app-historial-postulaciones *ngIf="vistaActual === 'historial'"></app-historial-postulaciones>
+  </div>
+
+  <div class="retro-modal-overlay" *ngIf="mostrarModalExitoPublicacion">
+    <div class="retro-modal-box">
+      <h3>¡Oferta Publicada!</h3>
+      <p>Los estudiantes ya pueden postular a tu vacante desde sus paneles.</p>
+      <button (click)="mostrarModalExitoPublicacion = false" class="btn-retro">Aceptar</button>
+    </div>
+  </div>
+
+</div>

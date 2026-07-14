@@ -1,0 +1,195 @@
+/* ==========================================================================
+   CONFIGURACIÓN ANCHURA ANGULAR (:host)
+   ========================================================================== */
+:host {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+/* ==========================================
+   PANEL DERECHO PRINCIPAL
+   ========================================== */
+.main-content {
+  flex: 1;
+  width: 100%;
+  background-color: #2b1111; /* Fondo oscuro interno guinda */
+  border-radius: 10px;
+  padding: 30px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-header .main-title-section {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 0 0 25px 0;
+  letter-spacing: 1px;
+}
+
+/* Caja de Búsqueda Compacta */
+.search-box-card {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  max-width: 450px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.search-inputs-inline {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.search-inputs-inline .input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.search-inputs-inline label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #444;
+}
+
+.search-inputs-inline select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #999;
+  background-color: white;
+  outline: none;
+  width: 100%;
+}
+
+.btn-search {
+  background-color: #ff7f27;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  height: 38px;
+}
+
+/* Sección de Resultados */
+.results-heading-section h2 {
+  font-size: 16px;
+  color: #dfcfcf;
+  margin: 0 0 15px 0;
+  font-weight: normal;
+}
+
+/* CONTENEDOR BLANCO TOTALMENTE EXPANDIDO */
+.results-container-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.reports-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+/* Filas Naranjas Estilo Mockup */
+.report-item-orange {
+  background-color: #ff7f27;
+  border-radius: 12px;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.left-row-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+
+.report-icon {
+  font-size: 24px;
+  color: #0c56bd; /* Color azul para el ícono del portapapeles */
+}
+
+/* Caja de Nombre Dinámica */
+.student-name-box {
+  background-color: white;
+  color: #333;
+  padding: 8px 25px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  flex: 1;
+  max-width: 400px;
+  min-width: 250px;
+  text-align: left;
+}
+
+/* Acciones y Estados a la derecha */
+.right-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-action-blue {
+  background-color: #0c56bd;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Estados (Badges) */
+.badge {
+  padding: 8px 18px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.badge-white {
+  background-color: white;
+  color: #777;
+}
+
+.badge-yellow {
+  background-color: #fce14c;
+  color: #333;
+}
+
+.badge-green {
+  background-color: #87ff43;
+  color: #333;
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+  .report-item-orange { flex-direction: column; gap: 15px; align-items: flex-start; }
+  .right-row-actions { width: 100%; justify-content: space-between; flex-wrap: wrap; }
+}

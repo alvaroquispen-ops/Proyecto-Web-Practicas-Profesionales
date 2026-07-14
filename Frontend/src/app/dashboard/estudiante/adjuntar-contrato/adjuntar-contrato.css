@@ -1,0 +1,70 @@
+/* Contenedor Principal Oscuro (Mantiene la consistencia del Dashboard) */
+.main-content {
+  flex: 1;
+  background-color: #2b1111; /* Color guinda del panel */
+  border-radius: 10px;
+  padding: 30px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  min-height: 80vh;
+}
+
+/* Título superior con líneas segmentadas */
+.content-header .main-title-section {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 0 0 40px 0;
+  letter-spacing: 1px;
+}
+
+/* Tarjeta Blanca Redondeada */
+.upload-container-card {
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 400px; /* Tamaño controlado idéntico a la captura */
+  margin-left: 20px; /* Ligera separación del borde izquierdo */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Fila de acción interna */
+.upload-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Texto de etiqueta "Contrato" */
+.upload-label-text {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1a1a1a;
+  font-family: sans-serif;
+}
+
+/* Botón Azul "Adjuntar" */
+.btn-adjuntar {
+  background-color: #0b4cb1; /* Azul del botón */
+  color: white;
+  padding: 12px 35px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+  text-align: center;
+}
+
+.btn-adjuntar:hover {
+  background-color: #083984; /* Efecto hover sutil */
+}
+
+/* Ocultar el input de archivo feo por defecto del navegador */
+.hidden-file-input {
+  display: none;
+}

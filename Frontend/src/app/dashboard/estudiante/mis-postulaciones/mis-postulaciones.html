@@ -1,0 +1,219 @@
+<div *ngIf="pasoVista === 1">
+  <header class="content-header" style="text-align: center; margin-bottom: 25px; padding-top: 10px;">
+    <h1 style="color: white; font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; margin: 0; text-transform: uppercase;">
+      ---------------------- MIS POSTULACIONES ----------------------
+    </h1>
+  </header>
+
+  <div style="background-color: white; padding: 20px 24px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.25); max-width: 1000px; margin: 0 auto 20px auto;">
+    <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: flex-end;">
+      <div style="flex: 1; min-width: 180px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #334155;">Empresa</label>
+        <input type="text" [(ngModel)]="inputEmpresa" (ngModelChange)="onFiltroChange()" placeholder="Seleccionar" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+      </div>
+      <div style="flex: 1; min-width: 180px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #334155;">Puesto</label>
+        <input type="text" [(ngModel)]="inputPuesto" (ngModelChange)="onFiltroChange()" placeholder="Seleccionar" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+      </div>
+      <button type="button" (click)="buscarConFiltros()" style="background-color: #f37022; color: white; border: none; padding: 10px 25px; font-weight: bold; border-radius: 4px; cursor: pointer; white-space: nowrap;">
+        🔍 Buscar
+      </button>
+    </div>
+  </div>
+
+  <div style="background-color: white; border-radius: 12px; padding: 25px; max-width: 1000px; margin: 0 auto; color: black; min-height: 450px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+    
+    <h3 style="text-align: left; margin-top: 0; margin-bottom: 20px; color: #334155; font-size: 1.1rem; font-weight: bold;">
+      Todos los resultados
+    </h3>
+
+    <div *ngIf="filtroPendiente" style="background-color: #fdeeee; color: #5e1a24; padding: 15px; border-radius: 6px; border: 1px solid #f3c8c8; margin-bottom: 15px;">
+      Presiona <strong>Buscar</strong> para aplicar los filtros ingresados.
+    </div>
+    
+    <div *ngIf="!filtroPendiente" style="display: flex; flex-direction: column; gap: 16px; max-height: 560px; overflow-y: auto; padding-right: 6px;">
+      
+      <div *ngFor="let post of misPostulacionesFiltradas" style="background-color: #0c46b4; border-radius: 14px; padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        
+        <div style="display: flex; align-items: center; gap: 15px; text-align: left;">
+          <img [src]="post.logo || logoPorDefecto" alt="logo" style="width: 45px; height: 45px; border-radius: 6px; object-fit: cover; background-color: white; padding: 2px;">
+          <div>
+            <h4 style="margin: 0; font-size: 1.1rem; font-weight: bold; letter-spacing: 0.5px;">{{ post.puesto }}</h4>
+            <p style="margin: 3px 0 0 0; color: #93c5fd; font-size: 0.85rem; font-weight: 500;">{{ post.empresa }}</p>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 10px;">
+          
+          <button type="button" (click)="abrirDetalle(post)" style="background-color: #00f0d2; color: #072a6b; border: none; padding: 7px 18px; font-size: 0.8rem; font-weight: bold; border-radius: 20px; cursor: pointer;">
+            Detalles
+          </button>
+          
+          <span [style.background-color]="post.estado === 'PENDIENTE' ? '#ffcc00' : 'white'"
+                [style.color]="post.estado === 'PENDIENTE' ? 'black' : '#94a3b8'"
+                style="padding: 7px 18px; font-size: 0.8rem; font-weight: bold; border-radius: 20px; border: 1px solid #e2e8f0; min-width: 85px; text-align: center; display: inline-block;">
+            Pendiente
+          </span>
+
+          <span [style.background-color]="post.estado === 'ACEPTADO' ? '#4caf50' : 'white'"
+                [style.color]="post.estado === 'ACEPTADO' ? 'white' : '#94a3b8'"
+                style="padding: 7px 18px; font-size: 0.8rem; font-weight: bold; border-radius: 20px; border: 1px solid #e2e8f0; min-width: 85px; text-align: center; display: inline-block;">
+            Aceptado
+          </span>
+
+          <span [style.background-color]="post.estado === 'RECHAZADO' ? '#f44336' : 'white'"
+                [style.color]="post.estado === 'RECHAZADO' ? 'white' : '#94a3b8'"
+                style="padding: 7px 18px; font-size: 0.8rem; font-weight: bold; border-radius: 20px; border: 1px solid #e2e8f0; min-width: 85px; text-align: center; display: inline-block;">
+            Rechazado
+          </span>
+
+          <span [style.background-color]="post.estado === 'CADUCADO' ? '#64748b' : 'white'"
+                [style.color]="post.estado === 'CADUCADO' ? 'white' : '#94a3b8'"
+                style="padding: 7px 18px; font-size: 0.8rem; font-weight: bold; border-radius: 20px; border: 1px solid #e2e8f0; min-width: 85px; text-align: center; display: inline-block;">
+            Caducado
+          </span>
+
+        </div>
+
+      </div>
+
+      <div *ngIf="misPostulacionesFiltradas.length === 0" style="text-align: center; color: #94a3b8; margin-top: 40px; font-size: 1rem;">
+        No se encontraron postulaciones que coincidan con los filtros ingresados.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= VISTA DE DETALLE DE LA POSTULACIÓN ================= -->
+<ng-container *ngIf="pasoVista === 2 && postulacionSeleccionada">
+
+  <header style="display: flex; justify-content: center; align-items: center; margin-bottom: 25px; padding: 10px 0; position: relative;">
+    <button type="button" (click)="volverALaLista()" style="position: absolute; left: 0; background-color: white; color: #5e1a24; border: none; padding: 8px 20px; font-weight: bold; border-radius: 6px; cursor: pointer;">
+      ⬅ Volver
+    </button>
+    <h1 style="color: white; font-size: 1.5rem; font-weight: bold; text-transform: uppercase; margin: 0; text-align: center;">
+      Información de postulación:<br>
+      {{ postulacionSeleccionada.empresa }} - {{ postulacionSeleccionada.puesto }}
+    </h1>
+  </header>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; max-width: 1100px; margin: 0 auto;">
+
+    <!-- Columna 1: Datos personales -->
+    <section style="background-color: white; border-radius: 14px; padding: 22px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: left;">
+      <h3 style="color: #800000; font-weight: bold; margin-top: 0; margin-bottom: 16px; font-size: 1.1rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;">Datos personales</h3>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <label style="display: block; font-weight: bold; font-size: 0.85rem; color: #333; margin-bottom: 3px;">Nombres</label>
+          <input type="text" disabled [value]="postulacionSeleccionada.nombres" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; background-color: #f1f5f9; color: #555; box-sizing: border-box;">
+        </div>
+        <div>
+          <label style="display: block; font-weight: bold; font-size: 0.85rem; color: #333; margin-bottom: 3px;">Apellidos</label>
+          <input type="text" disabled [value]="postulacionSeleccionada.apellidos" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; background-color: #f1f5f9; color: #555; box-sizing: border-box;">
+        </div>
+        <div>
+          <label style="display: block; font-weight: bold; font-size: 0.85rem; color: #333; margin-bottom: 3px;">Género</label>
+          <input type="text" disabled [value]="postulacionSeleccionada.genero" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; background-color: #f1f5f9; color: #555; box-sizing: border-box;">
+        </div>
+        <div>
+          <label style="display: block; font-weight: bold; font-size: 0.85rem; color: #333; margin-bottom: 3px;">Fecha de nacimiento</label>
+          <input type="text" disabled [value]="postulacionSeleccionada.fechaNacimiento" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; background-color: #f1f5f9; color: #555; box-sizing: border-box;">
+        </div>
+        <div>
+          <label style="display: block; font-weight: bold; font-size: 0.85rem; color: #333; margin-bottom: 3px;">DNI</label>
+          <input type="text" disabled [value]="postulacionSeleccionada.dni" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; background-color: #f1f5f9; color: #555; box-sizing: border-box;">
+        </div>
+        <div>
+          <label style="display: block; font-weight: bold; font-size: 0.85rem; color: #333; margin-bottom: 3px;">Correo institucional</label>
+          <input type="text" disabled [value]="postulacionSeleccionada.correoInstitucional" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; background-color: #f1f5f9; color: #555; box-sizing: border-box;">
+        </div>
+      </div>
+    </section>
+
+    <!-- Columna 2: Datos académicos + Habilidades + Requisitos -->
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <section style="background-color: white; border-radius: 14px; padding: 22px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: left;">
+        <h3 style="color: #800000; font-weight: bold; margin-top: 0; margin-bottom: 16px; font-size: 1.1rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;">Datos académicos</h3>
+        <label style="display: block; font-weight: bold; font-size: 0.85rem; color: #333; margin-bottom: 3px;">Carrera</label>
+        <input type="text" disabled [value]="postulacionSeleccionada.carrera" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; background-color: #f1f5f9; color: #555; box-sizing: border-box;">
+      </section>
+
+      <section style="background-color: white; border-radius: 14px; padding: 22px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: left;">
+        <h3 style="color: #800000; font-weight: bold; margin-top: 0; margin-bottom: 10px; font-size: 1.1rem;">Habilidades y competencias</h3>
+        <p style="color: #555; font-size: 0.85rem; line-height: 1.6; margin: 0;">
+          Excel nivel intermedio, Python nivel intermedio, SQL Server nivel avanzado.
+        </p>
+      </section>
+
+      <section style="background-color: white; border-radius: 14px; padding: 22px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: left;">
+        <h3 style="color: #800000; font-weight: bold; margin-top: 0; margin-bottom: 10px; font-size: 1.1rem;">Requisitos</h3>
+        <ul style="color: #555; padding-left: 18px; line-height: 1.7; margin: 0; font-size: 0.85rem;">
+          <li>Estar cursando del 7mo ciclo en adelante</li>
+          <li>CV actualizado</li>
+          <li>Certificado de estudios</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Columna 3: Adjuntar requisitos + Estado + Pasos a seguir -->
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+      <section style="background-color: white; border-radius: 14px; padding: 22px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: left;">
+        <h3 style="color: #800000; font-weight: bold; margin-top: 0; margin-bottom: 12px; font-size: 1.1rem;">Adjuntar requisitos</h3>
+
+        <div *ngIf="!postulacionSeleccionada.documentosAdjuntos || postulacionSeleccionada.documentosAdjuntos.length === 0" style="color: #999; font-size: 0.85rem; text-align: center; padding: 15px;">
+          No hay documentos adjuntos.
+        </div>
+
+        <a *ngFor="let doc of postulacionSeleccionada.documentosAdjuntos" 
+           [href]="doc.url ? ('http://localhost:3000' + doc.url) : '#'" target="_blank" rel="noopener"
+           style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; margin-bottom: 8px; background-color: #f1f5f9; border-radius: 6px; text-decoration: none; color: #16265c; font-weight: 500; font-size: 0.8rem; word-break: break-all;">
+          📄 {{ doc.nombre || doc }}
+        </a>
+      </section>
+
+      <section style="background-color: #16265c; border-radius: 14px; padding: 22px; text-align: left; color: white;">
+        <h3 style="margin-top: 0; margin-bottom: 8px; font-size: 1.1rem;">Estado</h3>
+        <span [style.background-color]="postulacionSeleccionada.estado === 'PENDIENTE' ? '#ffcc00' : postulacionSeleccionada.estado === 'ACEPTADO' ? '#4caf50' : postulacionSeleccionada.estado === 'RECHAZADO' ? '#f44336' : '#64748b'"
+              [style.color]="postulacionSeleccionada.estado === 'PENDIENTE' ? 'black' : 'white'"
+              style="display: inline-block; padding: 6px 16px; border-radius: 20px; font-weight: bold; font-size: 0.8rem; margin-bottom: 16px;">
+          {{ postulacionSeleccionada.estado === 'PENDIENTE' ? 'Pendiente' : postulacionSeleccionada.estado === 'ACEPTADO' ? 'Aceptado' : postulacionSeleccionada.estado === 'RECHAZADO' ? 'Rechazado' : 'Caducado' }}
+        </span>
+
+        <h3 style="margin-top: 0; margin-bottom: 8px; font-size: 1.1rem;">Pasos a seguir</h3>
+        <div style="background-color: white; color: #333; border-radius: 8px; padding: 12px; min-height: 90px; font-size: 0.85rem; line-height: 1.5;">
+          <span *ngIf="postulacionSeleccionada.estado === 'ACEPTADO'">
+            Estimado/a {{ postulacionSeleccionada.nombres }}, ¡Felicidades! Te invitamos a estar atento a tu correo, donde recibirás información detallada sobre los próximos pasos a seguir. Atentamente, {{ postulacionSeleccionada.empresa }}.
+          </span>
+          <span *ngIf="postulacionSeleccionada.estado === 'RECHAZADO'" style="color: #c62828;">
+            Lo sentimos, no cumple con los requisitos.
+          </span>
+        </div>
+      </section>
+    </div>
+
+  </div>
+
+  <div style="max-width: 1100px; margin: 30px auto 10px auto; text-align: center;">
+    <button type="button" 
+            (click)="pedirConfirmacionEliminar()" 
+            [disabled]="!estaPendiente(postulacionSeleccionada)"
+            [style.opacity]="estaPendiente(postulacionSeleccionada) ? 1 : 0.5"
+            [style.cursor]="estaPendiente(postulacionSeleccionada) ? 'pointer' : 'not-allowed'"
+            style="width: 320px; background-color: #f37022; color: white; border: none; padding: 12px 20px; font-weight: bold; font-size: 1rem; border-radius: 8px;">
+      Eliminar
+    </button>
+  </div>
+
+</ng-container>
+
+<!-- ================= MODAL DE CONFIRMACIÓN PARA ELIMINAR ================= -->
+<div *ngIf="mostrarModalEliminar" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 9999;">
+  <div style="background-color: #0c1f66; border-radius: 10px; padding: 20px 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); text-align: center;">
+    <p style="color: white; font-weight: bold; margin: 0 0 18px 0; font-size: 1.05rem;">¿Desea eliminar?</p>
+    <div style="display: flex; justify-content: center; gap: 15px;">
+      <button type="button" (click)="confirmarEliminar()" style="background-color: #0055d4; color: white; border: none; padding: 8px 22px; font-weight: bold; border-radius: 6px; cursor: pointer;">Sí</button>
+      <button type="button" (click)="cancelarEliminar()" style="background-color: #e0e0e0; color: #333; border: none; padding: 8px 22px; font-weight: bold; border-radius: 6px; cursor: pointer;">No</button>
+    </div>
+  </div>
+</div>

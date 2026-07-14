@@ -1,0 +1,136 @@
+/* ==========================================================================
+   CONFIGURACIÓN ANCHURA ANGULAR (:host)
+   ========================================================================== */
+:host {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+/* ==========================================
+   PANEL DERECHO PRINCIPAL
+   ========================================== */
+.main-content {
+  flex: 1;
+  width: 100%;
+  background-color: #2b1111; /* Fondo oscuro interno guinda */
+  border-radius: 10px;
+  padding: 30px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-header .main-title-section {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 0 0 25px 0;
+  letter-spacing: 1px;
+}
+
+/* ==========================================
+   TARJETA DE BIENVENIDA Y CONCEPTO
+   ========================================== */
+.welcome-card {
+  background-color: white;
+  padding: 25px 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  border-left: 5px solid #ff7f27; /* Línea decorativa naranja */
+}
+
+.welcome-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.welcome-icon {
+  font-size: 24px;
+}
+
+.welcome-card h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #2b1111;
+  font-weight: bold;
+}
+
+.welcome-concept {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ==========================================
+   SECCIÓN DE RESULTADOS / DATOS
+   ========================================== */
+.results-heading-section h2 {
+  font-size: 16px;
+  color: #dfcfcf;
+  margin: 0 0 15px 0;
+  font-weight: normal;
+}
+
+.results-container-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 30px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Distribución de los datos en dos columnas fijas */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+/* Cajas de Campos estilo Naranja / Limpio */
+.info-field-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-field-box label {
+  font-size: 13px;
+  font-weight: bold;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.field-value {
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid #e9ecef;
+}
+
+/* Destacar el rol de usuario */
+.highlight-role {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  font-weight: bold;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}

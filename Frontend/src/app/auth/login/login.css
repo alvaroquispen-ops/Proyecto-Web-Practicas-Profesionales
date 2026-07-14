@@ -1,0 +1,164 @@
+/* 1. ESTO ES LO CLAVE: Controla todo el fondo de la pantalla y fuerza el centrado total */
+.auth-container {
+  display: flex !important;
+  justify-content: center !important;  /* Centra horizontalmente */
+  align-items: center !important;      /* Centra verticalmente */
+  width: 100% !important;
+  min-height: 100vh !important;        /* Fuerza a que use el alto total de la pantalla */
+  background-color: #f4f6f9;
+  box-sizing: border-box;
+}
+
+/* 2. La tarjeta interna que une el formulario y la imagen */
+.login-card-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;             /* El tamaño ideal de tu boceto */
+  height: 600px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;              /* Mantiene la imagen dentro de los bordes redondeados */
+}
+
+/* 3. Asegura que ambas mitades ocupen exactamente el 50% */
+.form-section {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Estilos internos del formulario para que se vea limpio */
+h1 {
+  font-size: 28px;
+  color: #1a202c;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #718096;
+  margin-bottom: 25px;
+  font-size: 15px;
+}
+
+/* Selector de roles (Botones Alumno, Docente, Empresa) */
+.user-type-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.user-type-selector button {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  background-color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.user-type-selector button.active {
+  background-color: #ebf8ff;
+  border-color: #3182ce;
+  color: #2b6cb0;
+}
+
+/* Alerta de prueba */
+.test-access-alert {
+  background-color: #ebf8ff;
+  color: #2b6cb0;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* Inputs de texto */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  font-size: 14px;
+  color: #4a5568;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.input-group input {
+  padding: 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+.input-group input:focus {
+  border-color: #3182ce;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+}
+
+/* Botón principal */
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background-color: #1a56db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.register-prompt {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #718096;
+}
+
+.register-prompt a {
+  color: #1a56db;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* 4. Sección de la Imagen (50% de la tarjeta) */
+.image-section {
+  flex: 1;                     /* Ocupa el 50% derecho */
+  height: 100%;                /* Toma el alto completo de la tarjeta */
+  background-color: #f7fafc;   /* Color de fondo opcional mientras carga */
+}
+
+.image-section img {
+  width: 100%;                 /* Llena todo el ancho disponible */
+  height: 100%;                /* Llena todo el alto disponible */
+  object-fit: cover;           /* MAGIA: Recorta y ajusta la imagen sin estirarla */
+  object-position: center;     /* Centra la parte visible de la imagen */
+}
+
+/* 5. Diseño responsivo para celulares (Se oculta la imagen) */
+@media (max-width: 768px) {
+  .image-section {
+    display: none;
+  }
+  .login-card-wrapper {
+    max-width: 480px;
+    height: auto;
+  }
+}

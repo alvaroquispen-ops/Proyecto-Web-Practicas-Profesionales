@@ -1,0 +1,66 @@
+<main class="main-content">
+  <header class="content-header">
+    <h1 class="main-title-section">------------------- MI INFORMACIÓN -------------------</h1>
+  </header>
+
+  <section class="welcome-card">
+    <div class="welcome-header">
+      <span class="welcome-icon">👋</span>
+      <h2>¡Bienvenido(a) a tu Panel de Perfil!</h2>
+    </div>
+    <p class="welcome-concept">
+      En esta sección puedes visualizar y gestionar toda tu información laboral y académica registrada en el sistema. 
+      Estos datos permiten validar tu identidad frente a los alumnos y gestionar la revisión de contratos e informes asignados.
+    </p>
+  </section>
+
+  <section class="results-heading-section">
+    <h2>Mis Datos Personales (Desde el Registro)</h2>
+  </section>
+
+  <section class="results-container-card">
+    <div class="profile-grid">
+
+      <div class="info-field-box">
+        <label>Nombre Completo</label>
+        <div class="field-value">{{ nombreCompleto || 'No registrado' }}</div>
+      </div>
+
+      <div class="info-field-box">
+        <label>Rol de Sistema</label>
+        <div class="field-value highlight-role">Profesor Universitario</div>
+      </div>
+
+      <div class="info-field-box">
+        <label>Correo Electrónico</label>
+        <div class="field-value">{{ correo || 'No registrado' }}</div>
+      </div>
+
+      <div class="info-field-box">
+        <label>DNI</label>
+        <div class="field-value">{{ dni || 'No registrado' }}</div>
+      </div>
+
+      <div class="info-field-box">
+        <label>Carrera</label>
+        <div class="field-value">{{ carrera || 'No registrado' }}</div>
+      </div>
+
+      <div class="info-field-box">
+        <label>Curso a Cargo</label>
+        <div class="field-value">{{ curso || 'No registrado' }}</div>
+      </div>
+
+      <div class="info-field-box">
+        <label>Código del Curso</label>
+        <div class="field-value">{{ codigoCurso || 'No registrado' }}</div>
+      </div>
+
+      <div class="info-field-box">
+        <label>Institución / Facultad</label>
+        <div class="field-value">UNMSM - FISI</div>
+      </div>
+
+    </div>
+  </section>
+</main>

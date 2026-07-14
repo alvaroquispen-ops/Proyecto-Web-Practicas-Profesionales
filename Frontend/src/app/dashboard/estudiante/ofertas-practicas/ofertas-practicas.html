@@ -1,0 +1,242 @@
+<div class="contenedor-principal" style="padding: 24px; font-family: sans-serif; color: black; background-color: #5e1a24; min-height: 100vh; border-radius: 10px;">
+
+  <div *ngIf="pasoVista === 1">
+    <div style="text-align: center; color: #fff; margin-bottom: 22px;">
+      <h2 style="margin: 0 0 8px 0; letter-spacing: 1px; font-weight: bold;">
+        ------------------------- OFERTAS LABORALES -------------------------
+      </h2>
+      <p style="margin: 0; color: #f0d9db; font-size: 0.95rem;">
+        Encuentra tu próximo trabajo, ¡dale un vistazo a estas ofertas activas y postula!
+      </p>
+    </div>
+
+    <div style="background-color: #fff; padding: 20px 24px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.25); margin-bottom: 24px;">
+      <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: flex-end;">
+        <div style="flex: 1; min-width: 200px;">
+          <label style="display: block; margin-bottom: 5px; font-weight: bold;">Área</label>
+          <input type="text" [(ngModel)]="inputArea" (ngModelChange)="onFiltroChange()" placeholder="Seleccionar" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+          <label style="display: block; margin-bottom: 5px; font-weight: bold;">Puesto</label>
+          <input type="text" [(ngModel)]="inputPuesto" (ngModelChange)="onFiltroChange()" placeholder="Seleccionar" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+          <label style="display: block; margin-bottom: 5px; font-weight: bold;">Modalidad</label>
+          <select [(ngModel)]="inputModalidad" (ngModelChange)="onFiltroChange()" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+            <option value="">Todas</option>
+            <option value="presencial">Presencial</option>
+            <option value="remoto">Remoto</option>
+            <option value="Híbrida">Híbrido / Híbrida</option>
+          </select>
+        </div>
+        <button type="button" (click)="buscarConFiltros()" style="background-color: #f37022; color: white; border: none; padding: 10px 25px; font-weight: bold; border-radius: 4px; cursor: pointer; white-space: nowrap;">
+          🔍 Buscar
+        </button>
+      </div>
+    </div>
+
+    <div style="color: #fff; font-weight: bold; margin-bottom: 14px; font-size: 1.05rem;">
+      Todos los resultados
+    </div>
+    <div *ngIf="filtroPendiente" style="background-color: #fdeeee; color: #5e1a24; padding: 15px; border-radius: 6px; border: 1px solid #f3c8c8; margin-bottom: 15px;">
+      Presiona <strong>Buscar</strong> para aplicar los filtros ingresados.
+    </div>
+
+    <div *ngIf="!filtroPendiente && ofertasFiltradas && ofertasFiltradas.length > 0" style="max-height: 520px; overflow-y: auto; padding-right: 6px;">
+      <div *ngFor="let oferta of ofertasFiltradas" style="background-color: #16265c; border-radius: 10px; padding: 16px 20px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 3px 8px rgba(0,0,0,0.25);">
+        <div style="display: flex; align-items: center; gap: 16px; min-width: 0;">
+          <div style="background-color: #fff; color: #16265c; font-weight: bold; width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.85rem;">
+            {{ (oferta.area || '??').substring(0,2).toUpperCase() }}
+          </div>
+          <div style="color: #fff; min-width: 0;">
+            <div style="font-weight: bold; text-transform: uppercase; line-height: 1.3;">{{ oferta.puesto || oferta.titulo }}</div>
+            <div style="font-size: 0.85rem; color: #cfd6ea; margin-top: 2px;">{{ oferta.area }} · {{ oferta.modalidad }}</div>
+          </div>
+        </div>
+        <button type="button" (click)="abrirDetalle(oferta)" style="background-color: #fff; color: #16265c; border: none; padding: 10px 22px; border-radius: 20px; font-weight: bold; cursor: pointer;">
+          VER MÁS
+        </button>
+      </div>
+    </div>
+    <div *ngIf="!filtroPendiente && ofertasFiltradas && ofertasFiltradas.length === 0" style="background-color: #fff3cd; color: #856404; padding: 15px; border-radius: 6px; border: 1px solid #ffeeba;">
+      No se encontraron ofertas que coincidan con los filtros ingresados.
+    </div>
+    
+  </div>
+
+  <ng-container *ngIf="pasoVista === 2 && ofertaSeleccionada">
+    <header class="content-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding: 10px 0; position: relative;">
+      <h1 class="main-title-section" style="color: white; font-size: 1.8rem; font-weight: bold; text-transform: uppercase; margin: 0; text-align: center; width: 100%;">
+        {{ ofertaSeleccionada.titulo || 'EMPRESA' }} - {{ ofertaSeleccionada.puesto || ofertaSeleccionada.titulo }}
+      </h1>
+      <button type="button" (click)="pasoVista = 1" class="btn-action btn-white" style="width: auto; padding: 8px 20px; font-weight: bold; cursor: pointer; position: absolute; right: 20px; border-radius: 6px; border: none; background-color: white; color: #5e1a24;">
+        ⬅ Volver
+      </button>
+    </header>
+
+    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; margin-top: 20px; width: 100%; box-sizing: border-box; padding: 0 10px;">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <section style="background-color: white; border-radius: 16px; padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); color: black; text-align: left;">
+          <h3 style="color: #800000; font-weight: bold; margin-top: 0; margin-bottom: 20px; font-size: 1.3rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">Información de la oferta</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px 15px; line-height: 1.5;">
+            <div><p style="margin: 0; font-weight: bold; color: #222;">Empresa</p><span style="color: #555;">{{ ofertaSeleccionada.titulo }}</span></div>
+            <div><p style="margin: 0; font-weight: bold; color: #222;">Distrito</p><span style="color: #555;">{{ ofertaSeleccionada.distrito }}</span></div>
+            <div><p style="margin: 0; font-weight: bold; color: #222;">Área</p><span style="color: #555;">{{ ofertaSeleccionada.area }}</span></div>
+            <div><p style="margin: 0; font-weight: bold; color: #222;">Puesto</p><span style="color: #555;">{{ ofertaSeleccionada.puesto }}</span></div>
+            <div><p style="margin: 0; font-weight: bold; color: #222;">Inicio</p><span style="color: #555;">{{ ofertaSeleccionada.fechaInicio | date:'dd/MM/yyyy' }}</span></div>
+            <div><p style="margin: 0; font-weight: bold; color: #222;">Fin Convocatoria</p><span style="color: #d9534f; font-weight: bold;">{{ ofertaSeleccionada.fechaFin | date:'dd/MM/yyyy' }}</span></div>
+            <div style="grid-column: span 2;"><p style="margin: 0; font-weight: bold; color: #222;">Modalidad</p><span style="color: #555;">{{ ofertaSeleccionada.modalidad }}</span></div>
+          </div>
+        </section>
+        <section style="background-color: white; border-radius: 16px; padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); color: black; text-align: left;">
+          <h3 style="color: #800000; font-weight: bold; margin-top: 0; margin-bottom: 12px; font-size: 1.3rem;">Descripción del perfil</h3>
+          <p style="color: #444; line-height: 1.6; white-space: pre-line; text-align: justify; margin: 0;">{{ ofertaSeleccionada.descripcion }}</p>
+        </section>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <section style="background-color: white; border-radius: 16px; padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); color: black; text-align: left;">
+          <h3 style="color: #800000; font-weight: bold; margin-top: 0; margin-bottom: 12px; font-size: 1.3rem;">Beneficios</h3>
+          <ul style="color: #444; padding-left: 20px; line-height: 1.8; margin: 0;">
+            <li>Subvención económica competitiva</li>
+            <li>Seguro médico de practicante</li>
+            <li>Horario flexible para exámenes y estudios</li>
+          </ul>
+        </section>
+        <section style="background-color: white; border-radius: 16px; padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); color: black; text-align: left;">
+          <h3 style="color: #800000; font-weight: bold; margin-top: 0; margin-bottom: 12px; font-size: 1.3rem;">Requisitos</h3>
+          <ul style="color: #444; padding-left: 20px; line-height: 1.8; margin: 0;">
+            <li>Estar cursando del 7mo ciclo en adelante</li>
+            <li>Disponibilidad para trabajar bajo la modalidad indicada</li>
+            <li>CV actualizado</li>
+          </ul>
+        </section>
+        <section style="background-color: white; border-radius: 16px; padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); color: black; text-align: left;">
+          <h3 style="color: #800000; font-weight: bold; margin-top: 0; margin-bottom: 12px; font-size: 1.3rem;">Consultas</h3>
+          <span style="color: #222; font-weight: bold; display: block; margin-bottom: 15px;">{{ ofertaSeleccionada.contacto || 'rrhh@empresa.com' }}</span>
+          <button type="button" (click)="abrirFormularioPostulacion()" style="width: 100%; background-color: #f37022; color: white; border: none; padding: 12px; font-weight: bold; font-size: 1rem; border-radius: 8px; cursor: pointer;">
+            🚀 Postular a Vacante
+          </button>
+        </section>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- ================= FASE 3: PÁGINA COMPLETA DEL FORMULARIO DE POSTULACIÓN (3 COLUMNAS) ================= -->
+  <ng-container *ngIf="pasoVista === 3 && ofertaSeleccionada">
+    <header class="content-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding: 10px 0; position: relative;">
+      <h1 class="main-title-section" style="color: white; font-size: 1.8rem; font-weight: bold; text-transform: uppercase; margin: 0; text-align: center; width: 100%;">
+        Formulario de Postulación - {{ ofertaSeleccionada.puesto }}
+      </h1>
+      <button type="button" (click)="pasoVista = 2" class="btn-action btn-white" style="width: auto; padding: 8px 20px; font-weight: bold; cursor: pointer; position: absolute; right: 20px; border-radius: 6px; border: none; background-color: white; color: #5e1a24;">
+        ⬅ Cancelar
+      </button>
+    </header>
+
+    <!-- Contenedor Rejilla en 3 Columnas -->
+    <div style="display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 20px; margin-top: 20px; width: 100%; box-sizing: border-box; padding: 0 10px;">
+      
+      <!-- COLUMNA 1: Datos Personales organizados verticalmente -->
+      <div style="background-color: white; border-radius: 16px; padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); color: black; text-align: left;">
+        <h3 style="color: #800000; font-weight: bold; margin-top: 0; margin-bottom: 20px; font-size: 1.2rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;">
+          Datos del Estudiante
+        </h3>
+
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 4px; color: #333; font-size: 0.9rem;">Nombres:</label>
+            <input type="text" [(ngModel)]="nombreInput" style="width: 100%; padding: 9px; border: 1px solid #ccc; border-radius: 6px; background-color: #f9f9f9; box-sizing: border-box;">
+          </div>
+          <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 4px; color: #333; font-size: 0.9rem;">Género:</label>
+            <select [(ngModel)]="generoInput" style="width: 100%; padding: 9px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+              <option value="">Seleccionar</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 4px; color: #333; font-size: 0.9rem;">DNI:</label>
+            <input type="text" [(ngModel)]="dniInput" style="width: 100%; padding: 9px; border: 1px solid #ccc; border-radius: 6px; background-color: #f9f9f9; box-sizing: border-box;">
+          </div>
+          <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 4px; color: #333; font-size: 0.9rem;">Correo Institucional:</label>
+            <input type="email" [(ngModel)]="correoInput" style="width: 100%; padding: 9px; border: 1px solid #ccc; border-radius: 6px; background-color: #f9f9f9; box-sizing: border-box;">
+          </div>
+          <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 4px; color: #333; font-size: 0.9rem;">Carrera Universitaria:</label>
+            <input type="text" [(ngModel)]="carreraInput" style="width: 100%; padding: 9px; border: 1px solid #ccc; border-radius: 6px; background-color: #f9f9f9; box-sizing: border-box;">
+          </div>
+          <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 4px; color: #333; font-size: 0.9rem;">Apellidos:</label>
+            <input type="text" [(ngModel)]="apellidoInput" style="width: 100%; padding: 9px; border: 1px solid #ccc; border-radius: 6px; background-color: #f9f9f9; box-sizing: border-box;">
+          </div>
+          <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 4px; color: #333; font-size: 0.9rem;">Fecha de Nacimiento:</label>
+            <input type="date" [(ngModel)]="fechaNacimientoInput" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMNA 2: Adjuntar Documentos (Soporta hasta 3 archivos) -->
+      <div style="background-color: white; border-radius: 16px; padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); color: black; text-align: left;">
+        <h3 style="color: #800000; font-weight: bold; margin-top: 0; margin-bottom: 20px; font-size: 1.2rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;">
+          Adjuntar Documentos
+        </h3>
+        <p style="color: #666; font-size: 0.9rem; line-height: 1.4; margin-bottom: 20px;">
+          Sube tus archivos obligatorios u opcionales (CV, constancia de estudios, etc). Máximo 3 archivos.
+        </p>
+
+        <!-- Zona Dropzone Múltiple -->
+        <div style="border: 2px dashed #ccc; border-radius: 8px; padding: 30px 20px; text-align: center; background-color: #fafafa; cursor: pointer; position: relative;">
+          <input type="file" (change)="onArchivoSeleccionado($event)" accept=".pdf,.doc,.docx" multiple style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;">
+          <span style="font-size: 2.5rem; display: block; margin-bottom: 10px;">📂</span>
+          <span style="font-weight: bold; color: #16265c; display: block; font-size: 0.95rem;">Seleccionar archivo</span>
+          <span style="color: #888; font-size: 0.8rem; display: block; margin-top: 4px;">Soportado: PDF, DOCX (Máx. 3)</span>
+        </div>
+
+        <!-- Lista Dinámica de Archivos con opción de Eliminar -->
+        <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 8px;">
+          <div *ngFor="let item of archivosSeleccionados; let idx = index" style="background-color: #e8f5e9; color: #2e7d32; padding: 8px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+            <span>📄 {{ item.nombre }}</span>
+            <button type="button" (click)="eliminarArchivo(idx)" style="background: none; border: none; color: #c62828; font-weight: bold; cursor: pointer; font-size: 1rem; padding: 0 5px;">✕</button>
+          </div>
+          <div *ngIf="archivosSeleccionados.length === 0" style="color: #999; font-size: 0.85rem; text-align: center; margin-top: 10px;">
+            Ningún archivo seleccionado.
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMNA 3: Cuadros fijos de Beneficios y Requisitos -->
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <section style="background-color: white; border-radius: 16px; padding: 22px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); color: black; text-align: left;">
+          <h3 style="color: #800000; font-weight: bold; margin-top: 0; margin-bottom: 10px; font-size: 1.2rem;">Beneficios</h3>
+          <ul style="color: #444; padding-left: 20px; line-height: 1.7; margin: 0; font-size: 0.9rem;">
+            <li>Subvención económica competitiva</li>
+            <li>Seguro médico de practicante</li>
+            <li>Horario flexible para exámenes</li>
+          </ul>
+        </section>
+
+        <section style="background-color: white; border-radius: 16px; padding: 22px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); color: black; text-align: left;">
+          <h3 style="color: #800000; font-weight: bold; margin-top: 0; margin-bottom: 10px; font-size: 1.2rem;">Requisitos</h3>
+          <ul style="color: #444; padding-left: 20px; line-height: 1.7; margin: 0; font-size: 0.9rem;">
+            <li>Estar cursando del 7mo ciclo en adelante</li>
+            <li>Disponibilidad bajo la modalidad indicada</li>
+            <li>CV actualizado</li>
+          </ul>
+        </section>
+      </div>
+
+    </div>
+
+    <!-- SECCIÓN INDEPENDIENTE FUERA DE LAS COLUMNAS: Botón Enviar Centrado de manera Global -->
+    <div style="width: 100%; text-align: center; margin-top: 35px; margin-bottom: 20px;">
+      <button type="button" (click)="enviarFormulario()" style="width: 320px; background-color: #4caf50; color: white; border: none; padding: 14px 20px; font-weight: bold; font-size: 1.1rem; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: background-color 0.2s;">
+        Enviar Postulación
+      </button>
+    </div>
+    
+
+  </ng-container>
+
+</div>

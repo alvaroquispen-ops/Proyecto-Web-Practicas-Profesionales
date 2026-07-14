@@ -1,0 +1,47 @@
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo-container">
+        <span class="logo-icon">🎓</span>
+        <div class="logo-text">
+          <span class="main-title">FISI Prácticas</span>
+          <span class="sub-title">UNMSM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-profile">
+      <span class="user-icon">👤</span>
+      <span class="user-name">Profesor</span>
+    </div>
+
+    <nav class="menu">
+  <a class="menu-item" 
+     [class.active]="vistaActual === 'informacion'" 
+     (click)="cambiarVista('informacion')">
+    <i class="icon">👤</i> Mi información
+  </a>
+
+  <a class="menu-item" 
+     [class.active]="vistaActual === 'contrato'" 
+     (click)="cambiarVista('contrato')">
+    <i class="icon">📄</i> Revisar contrato
+  </a>
+
+  <a class="menu-item" 
+     [class.active]="vistaActual === 'informes'" 
+     (click)="cambiarVista('informes')">
+    <i class="icon">📊</i> Evaluar informes
+  </a>
+</nav>
+    
+    <div class="sidebar-footer">
+      <button class="btn-logout" (click)="onLogout()">Cerrar sesión</button>
+    </div>
+  </aside>
+ <div class="content-area" style="flex: 1; display: flex; flex-direction: column;">
+  <app-mi-informacion *ngIf="vistaActual === 'informacion'"></app-mi-informacion>
+  <app-revisar-contrato *ngIf="vistaActual === 'contrato'"></app-revisar-contrato>
+  <app-evaluar-informes *ngIf="vistaActual === 'informes'"></app-evaluar-informes>
+</div>
+</div>

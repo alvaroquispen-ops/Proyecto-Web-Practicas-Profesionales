@@ -1,0 +1,158 @@
+<main class="main-content" style="padding: 24px; font-family: sans-serif;">
+
+  <!-- ================= VISTA 1: LISTA ================= -->
+  <div *ngIf="vista === 'lista'">
+    <header style="text-align: center; margin-bottom: 25px;">
+      <h1 style="color: white; font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin: 0;">
+        --------------------- MIS INFORMES ---------------------
+      </h1>
+    </header>
+
+    <div style="background-color: white; border-radius: 12px; padding: 20px 24px; max-width: 700px; margin: 0 auto 18px auto; box-shadow: 0 4px 10px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: space-between;">
+      <span style="font-weight: bold; font-size: 1.05rem; color: #222;">Adjuntar informe</span>
+      <button type="button" (click)="abrirNuevo()" style="background-color: #0055d4; color: white; border: none; padding: 10px 24px; font-weight: bold; border-radius: 8px; cursor: pointer;">
+        Adjuntar
+      </button>
+    </div>
+
+    <div *ngFor="let inf of informes" style="background-color: white; border-radius: 12px; padding: 20px 24px; max-width: 700px; margin: 0 auto 14px auto; box-shadow: 0 4px 10px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: space-between;">
+      <span style="font-weight: bold; font-size: 1.05rem; color: #222;">{{ inf.titulo }}</span>
+      <button type="button" (click)="abrirDetalle(inf)" style="background-color: #0055d4; color: white; border: none; padding: 10px 24px; font-weight: bold; border-radius: 8px; cursor: pointer;">
+        Ver
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= VISTA 2: NUEVO ENVÍO ================= -->
+  <div *ngIf="vista === 'nuevo'">
+    <header style="display: flex; justify-content: center; align-items: center; margin-bottom: 25px; position: relative;">
+      <button type="button" (click)="volverALista()" style="position: absolute; left: 0; background-color: white; color: #5e1a24; border: none; padding: 8px 20px; font-weight: bold; border-radius: 6px; cursor: pointer;">
+        ⬅ Volver
+      </button>
+      <h1 style="color: white; font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin: 0;">
+        --------------------- MIS INFORMES ---------------------
+      </h1>
+    </header>
+
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; max-width: 850px; margin: 0 auto;">
+
+      <section style="background-color: white; border-radius: 14px; padding: 22px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: left;">
+        <label style="display: block; margin-bottom: 6px; font-size: 0.85rem; color: #666;">Título del informe</label>
+        <input type="text" [(ngModel)]="tituloInput" placeholder="Ej: Informe 1" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-family: inherit; font-weight: bold; font-size: 1.05rem; margin-bottom: 20px;">
+
+        <h3 style="margin-top: 0; margin-bottom: 8px; font-size: 1rem; color: #222;">Tu informe</h3>
+        <div style="border: 2px dashed #ccc; border-radius: 10px; padding: 30px 20px; text-align: center; background-color: #6b6b6b; color: white; position: relative; cursor: pointer;">
+          <input type="file" (change)="onArchivoSeleccionado($event)" accept=".pdf,.doc,.docx" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;" [style.display]="archivoSeleccionado ? 'none' : 'block'">
+          <span style="font-weight: bold;" *ngIf="!archivoSeleccionado">Subir informe</span>
+          <span style="font-weight: bold; position: relative; z-index: 2;" *ngIf="archivoSeleccionado">📄 {{ archivoSeleccionado.name }}</span>
+        </div>
+        <button *ngIf="archivoSeleccionado" type="button" (click)="quitarArchivo()" style="background: none; border: none; color: #e53935; font-weight: bold; font-size: 0.85rem; cursor: pointer; padding: 6px 0; text-decoration: underline;">
+          ✕ Quitar archivo
+        </button>
+
+        <button type="button" (click)="pedirConfirmacionEnviar()" style="width: 100%; margin-top: 12px; background-color: #f37022; color: white; border: none; padding: 12px; font-weight: bold; font-size: 1rem; border-radius: 8px; cursor: pointer;">
+          Enviar
+        </button>
+      </section>
+
+      <section style="background-color: #16265c; border-radius: 14px; padding: 22px; color: white; text-align: left;">
+        <div style="background-color: white; color: #16265c; font-weight: bold; text-align: center; padding: 8px; border-radius: 8px; margin-bottom: 18px;">
+          Docente: {{ docenteNombre }}
+        </div>
+        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1rem;">Calificación</h3>
+        <div style="background-color: white; border-radius: 6px; min-height: 30px; margin-bottom: 18px;"></div>
+        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1rem;">Comentario</h3>
+        <div style="background-color: white; border-radius: 8px; min-height: 100px;"></div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ================= VISTA 3: DETALLE DE UN INFORME ENVIADO ================= -->
+  <div *ngIf="vista === 'detalle' && informeSeleccionado">
+    <header style="display: flex; justify-content: center; align-items: center; margin-bottom: 25px; position: relative;">
+      <button type="button" (click)="volverALista()" style="position: absolute; left: 0; background-color: white; color: #5e1a24; border: none; padding: 8px 20px; font-weight: bold; border-radius: 6px; cursor: pointer;">
+        ⬅ Volver
+      </button>
+      <h1 style="color: white; font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin: 0;">
+        --------------------- MIS INFORMES ---------------------
+      </h1>
+    </header>
+
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; max-width: 850px; margin: 0 auto;">
+
+      <section style="background-color: white; border-radius: 14px; padding: 22px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: left;">
+        <h3 style="margin-top: 0; margin-bottom: 12px; font-size: 1.1rem; color: #222;">{{ informeSeleccionado.titulo }}</h3>
+
+        <a [href]="urlArchivo(informeSeleccionado.archivo)" target="_blank" rel="noopener"
+           style="display: flex; align-items: center; gap: 10px; border: 1px solid #ddd; border-radius: 10px; padding: 14px; background-color: #f8f9fa; text-decoration: none; color: #222; margin-bottom: 18px;">
+          <span style="font-size: 1.8rem;">📄</span>
+          <span>
+            <div style="font-weight: 600; font-size: 0.9rem; word-break: break-all;">{{ informeSeleccionado.archivo?.nombre }}</div>
+            <div style="font-size: 0.75rem; color: #888;">Fecha: {{ informeSeleccionado.fechaEnvio | date:'dd/MM/yyyy' }}</div>
+          </span>
+        </a>
+
+        <button type="button" (click)="pedirConfirmacionAnular()"
+                [disabled]="!estaPendiente(informeSeleccionado)"
+                [style.opacity]="estaPendiente(informeSeleccionado) ? 1 : 0.5"
+                [style.cursor]="estaPendiente(informeSeleccionado) ? 'pointer' : 'not-allowed'"
+                style="width: 100%; background-color: #e53935; color: white; border: none; padding: 12px; font-weight: bold; font-size: 1rem; border-radius: 8px;">
+          Anular envío
+        </button>
+      </section>
+
+      <section style="background-color: #16265c; border-radius: 14px; padding: 22px; color: white; text-align: left;">
+        <div style="background-color: white; color: #16265c; font-weight: bold; text-align: center; padding: 8px; border-radius: 8px; margin-bottom: 18px;">
+          Docente: {{ informeSeleccionado.docenteNombre }}
+        </div>
+
+        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1rem;">Calificación</h3>
+        <div style="background-color: white; color: #333; border-radius: 6px; padding: 8px; min-height: 20px; margin-bottom: 18px; font-weight: bold;">
+          {{ informeSeleccionado.calificacion }}
+        </div>
+
+        <h3 style="margin-top: 0; margin-bottom: 6px; font-size: 1rem;">Comentario</h3>
+        <div style="background-color: white; color: #333; border-radius: 8px; min-height: 100px; padding: 10px; font-size: 0.85rem;">
+          {{ informeSeleccionado.comentario || '' }}
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ================= MODAL: CONFIRMAR ENVÍO ================= -->
+  <div *ngIf="mostrarModalEnviar" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 9999;">
+    <div style="background-color: #b0b0b0; width: 100%; max-width: 320px; border: 3px solid #000080; box-shadow: 6px 6px 0px #404040; font-family: monospace;">
+      <div style="background-color: #000080; color: white; padding: 6px 10px; display: flex; justify-content: space-between; align-items: center; font-weight: bold;">
+        <span>Confirmación</span>
+        <button (click)="cancelarEnviar()" style="background-color: #c0c0c0; color: red; border: 2px solid white; font-weight: bold; cursor: pointer; padding: 0 5px;">X</button>
+      </div>
+      <div style="padding: 20px; background-color: #cbd5e1; text-align: center;">
+        <p style="margin: 0 0 18px 0; color: #222;">¿Desea enviar el informe?</p>
+        <div style="display: flex; justify-content: center; gap: 15px;">
+          <button (click)="confirmarEnviar()" style="background-color: #0055d4; color: white; border: 2px solid #0033aa; padding: 6px 20px; font-weight: bold; font-family: monospace; cursor: pointer; border-radius: 4px;">Sí</button>
+          <button (click)="cancelarEnviar()" style="background-color: #e0e0e0; color: black; border: 2px solid #999; padding: 6px 20px; font-weight: bold; font-family: monospace; cursor: pointer; border-radius: 4px;">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: CONFIRMAR ANULACIÓN ================= -->
+  <div *ngIf="mostrarModalAnular" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 9999;">
+    <div style="background-color: #b0b0b0; width: 100%; max-width: 320px; border: 3px solid #000080; box-shadow: 6px 6px 0px #404040; font-family: monospace;">
+      <div style="background-color: #000080; color: white; padding: 6px 10px; display: flex; justify-content: space-between; align-items: center; font-weight: bold;">
+        <span>Confirmación</span>
+        <button (click)="cancelarAnular()" style="background-color: #c0c0c0; color: red; border: 2px solid white; font-weight: bold; cursor: pointer; padding: 0 5px;">X</button>
+      </div>
+      <div style="padding: 20px; background-color: #cbd5e1; text-align: center;">
+        <p style="margin: 0 0 18px 0; color: #222;">¿Desea anular envío?</p>
+        <div style="display: flex; justify-content: center; gap: 15px;">
+          <button (click)="confirmarAnular()" style="background-color: #0055d4; color: white; border: 2px solid #0033aa; padding: 6px 20px; font-weight: bold; font-family: monospace; cursor: pointer; border-radius: 4px;">Sí</button>
+          <button (click)="cancelarAnular()" style="background-color: #e0e0e0; color: black; border: 2px solid #999; padding: 6px 20px; font-weight: bold; font-family: monospace; cursor: pointer; border-radius: 4px;">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>

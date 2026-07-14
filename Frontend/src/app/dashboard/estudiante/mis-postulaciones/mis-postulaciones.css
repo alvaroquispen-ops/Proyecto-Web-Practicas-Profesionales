@@ -1,0 +1,173 @@
+/* Contenedor Principal Oscuro */
+.main-content {
+  flex: 1;
+  background-color: #2b1111; /* Color guinda/oscuro corporativo */
+  border-radius: 10px;
+  padding: 30px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.content-header .main-title-section {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 0 0 30px 0;
+  letter-spacing: 1px;
+}
+
+/* Caja de Búsqueda */
+.search-box-card {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+}
+
+.search-inputs-inline {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.search-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.search-field label {
+  font-size: 14px;
+  color: #555;
+  font-weight: 500;
+}
+
+.custom-select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: #f9f9f9;
+  outline: none;
+}
+
+.btn-search {
+  background-color: #ff7a00; /* Naranja del botón Buscar */
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Resultados y Tarjetas */
+.results-container h2 {
+  color: white;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.cards-wrapper {
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.postulation-card {
+  border: 4px solid #0056c6; /* Borde azul grueso de las tarjetas */
+  border-radius: 25px;
+  display: flex;
+  overflow: hidden;
+  background-color: #0b4cb1; /* Fondo azul de la tarjeta */
+  color: white;
+}
+
+/* Logos dinámicos */
+.card-logo-area {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+
+.dynamic-orange { background-color: #ff6b00; }
+.dynamic-blue { background-color: #002a64; }
+
+.logo-placeholder-text {
+  font-size: 14px;
+}
+
+.card-info-area {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-info-area h3 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+
+.company-name {
+  margin: 5px 0 15px 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Acciones y Estados */
+.card-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-details {
+  background-color: #26e6b3; /* Verde menta del botón Detalles */
+  color: #052a5e;
+  border: none;
+  padding: 8px 35px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.status-badges {
+  display: flex;
+  gap: 8px;
+  background-color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+}
+
+.badge {
+  color: #aaa;
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+/* Estados Activos Dinámicos según la captura */
+.badge.badge-pending.active {
+  background-color: transparent;
+  color: #666;
+}
+
+.active-yellow {
+  background-color: #ffcc00;
+  color: #333 !important;
+  border-radius: 12px;
+}

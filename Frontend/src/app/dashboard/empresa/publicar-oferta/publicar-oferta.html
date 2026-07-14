@@ -1,0 +1,88 @@
+<main class="main-content">
+  <header class="content-header">
+    <h1 class="main-title-section">--------------------- PUBLICAR NUEVA OFERTA ---------------------</h1>
+  </header>
+
+  <form class="form-sections-grid" (submit)="$event.preventDefault()">
+    <div class="left-form-column">
+      <section class="form-card-block">
+        <h2>Información de la oferta</h2>
+        <div class="form-inputs-grid">
+          <div class="input-field">
+            <label>Nombre de la empresa</label>
+            <input type="text" [(ngModel)]="nuevaOferta.titulo" name="titulo" placeholder="Ej: Practicante de Sistemas">
+          </div>
+          <div class="input-field">
+            <label>Distrito</label>
+            <input type="text" [(ngModel)]="nuevaOferta.distrito" name="distrito" placeholder="Ej: Lima">
+          </div>
+          <div class="input-field">
+            <label>Área</label>
+            <input type="text" [(ngModel)]="nuevaOferta.area" name="area" placeholder="Ej: TI / Desarrollo">
+          </div>
+          <div class="input-field">
+            <label>Puesto de práctica</label>
+            <input type="text" [(ngModel)]="nuevaOferta.puesto" name="puesto" placeholder="Ej: Analista QA">
+          </div>
+          <div class="input-field">
+            <label>Fecha de inicio convocatoria</label>
+            <input type="date" [(ngModel)]="nuevaOferta.fechaInicio" name="fechaInicio">
+          </div>
+          <div class="input-field">
+            <label>Fecha fin convocatoria</label>
+            <input type="date" [(ngModel)]="nuevaOferta.fechaFin" name="fechaFin">
+          </div>
+          <div class="input-field full-width-input">
+            <label>Modalidad</label>
+            <input type="text" [(ngModel)]="nuevaOferta.modalidad" name="modalidad" placeholder="Ej: Presencial / Híbrida" class="input-rounded-pill">
+          </div>
+        </div>
+      </section>
+
+      <section class="form-card-block">
+        <h2>Descripción del perfil requerido</h2>
+        <div class="input-field">
+          <textarea rows="4" [(ngModel)]="nuevaOferta.descripcion" name="descripcion" placeholder="Buscamos estudiantes talentosos con pasión por..."></textarea>
+        </div>
+      </section>
+
+      <section class="form-card-block">
+        <h2>Habilidades y competencias necesarias</h2>
+        <div class="input-field">
+          <input type="text" [(ngModel)]="nuevaOferta.habilidades" name="habilidades" placeholder="Ej: Python, SQL, Git">
+        </div>
+      </section>
+    </div>
+
+    <div class="right-form-column">
+      <section class="form-card-block">
+        <h2>Beneficios</h2>
+        <ul class="bullet-list-style">
+          <li>Subvención económica competitiva</li>
+          <li>Seguro médico</li>
+          <li>Horario flexible</li>
+        </ul>
+      </section>
+
+      <section class="form-card-block">
+        <h2>Requisitos</h2>
+        <ul class="bullet-list-style">
+          <li>Estar cursando del 7mo ciclo en adelante</li>
+          <li>CV actualizado</li>
+        </ul>
+      </section>
+
+      <section class="form-card-block">
+        <h2>Consultas</h2>
+        <div class="input-field">
+          <label>Para más información contactar a:</label>
+          <input type="text" [(ngModel)]="nuevaOferta.contacto" name="contacto" placeholder="Ej: rrhh@empresa.com">
+        </div>
+      </section>
+
+      <div class="submit-action-container">
+        <button type="button" class="btn-submit-offer" (click)="publicar()">Publicar oferta <span>👉</span></button>
+      </div>
+    </div>
+  </form>
+</main>

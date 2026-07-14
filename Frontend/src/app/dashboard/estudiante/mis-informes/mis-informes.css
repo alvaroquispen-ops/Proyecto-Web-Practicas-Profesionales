@@ -1,0 +1,71 @@
+/* Contenedor Principal Oscuro */
+.main-content {
+  flex: 1;
+  background-color: #2b1111; /* Color guinda del panel corporativo */
+  border-radius: 10px;
+  padding: 30px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  min-height: 80vh;
+}
+
+/* Título superior segmentado */
+.content-header .main-title-section {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin: 0 0 35px 0;
+  letter-spacing: 1px;
+}
+
+/* Lista contenedora para controlar el espaciado vertical de las tarjetas */
+.reports-vertical-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Separación equitativa entre cada fila de informe */
+  max-width: 450px; /* Tamaño controlado ideal idéntico a la captura */
+  margin-left: 20px; /* Ligera separación del borde izquierdo */
+}
+
+/* Tarjeta Blanca Horizontal Redondeada */
+.report-row-card {
+  background-color: white;
+  padding: 22px 40px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Empuja el texto a la izquierda y el botón a la derecha */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Texto de etiqueta de los Informes */
+.report-label-text {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1a1a1a;
+  font-family: sans-serif;
+}
+
+/* Botón Azul "Adjuntar" */
+.btn-adjuntar {
+  background-color: #0b4cb1; /* Color azul exacto de tu interfaz corporativa */
+  color: white;
+  padding: 12px 35px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+  text-align: center;
+}
+
+.btn-adjuntar:hover {
+  background-color: #083984; /* Feedback visual interactivo */
+}
+
+/* Ocultar el input por defecto */
+.hidden-file-input {
+  display: none;
+}
