@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Oferta = require('../models/Oferta');
+const Oferta = require('../models/oferta');
 
 // POST: Publicar una nueva oferta
 router.post('/publicar', async (req, res) => {
