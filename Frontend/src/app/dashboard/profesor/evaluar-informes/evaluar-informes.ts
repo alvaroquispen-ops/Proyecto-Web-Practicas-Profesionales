@@ -105,7 +105,7 @@ export class EvaluarInformes implements OnInit {
 
   verArchivo(): void {
     if (!this.informeSeleccionado?.archivo?.url) return;
-    const url = `http://localhost:3000${this.informeSeleccionado.archivo.url}`;
+    const url = `https://proyecto-web-practicas-profesionales.onrender.com${this.informeSeleccionado.archivo.url}`;
     window.open(url, '_blank');
   }
 

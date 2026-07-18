@@ -102,7 +102,7 @@ export class RevisarContrato implements OnInit {
 
   verArchivo(): void {
     if (!this.contratoSeleccionado?.archivo?.url) return;
-    const url = `http://localhost:3000${this.contratoSeleccionado.archivo.url}`;
+    const url = `https://proyecto-web-practicas-profesionales.onrender.com${this.contratoSeleccionado.archivo.url}`;
     window.open(url, '_blank');
   }
 

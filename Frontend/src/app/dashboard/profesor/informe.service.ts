@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class InformeService {
-  private apiUrl = 'http://localhost:3000/api/informes';
+  private apiUrl = 'https://proyecto-web-practicas-profesionales.onrender.com/api/informes';
 
   constructor(private http: HttpClient) {}
 

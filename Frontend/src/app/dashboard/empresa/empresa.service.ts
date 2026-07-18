@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class EmpresaService {
   // Apunta directamente al prefijo base '/api' configurado en tu Express
-  private API_URL = 'http://localhost:3000/api'; 
+  private API_URL = 'https://proyecto-web-practicas-profesionales.onrender.com/api'; 
 
   constructor(private http: HttpClient) {}
 
@@ -15,21 +15,21 @@ export class EmpresaService {
   // OFERTAS DE PRÁCTICAS (Módulo: Publicar y Mis Ofertas)
   // ==========================================================================
 
-  // Conecta con POST -> http://localhost:3000/api/publicar
+  // Conecta con POST -> https://proyecto-web-practicas-profesionales.onrender.com/api/publicar
   publicarOferta(oferta: any): Observable<any> {
     return this.http.post(`${this.API_URL}/publicar`, oferta);
   }
 
   actualizarOferta(id: string, datos: any): Observable<any> {
-  return this.http.put(`http://localhost:3000/api/ofertas/${id}`, datos);
+  return this.http.put(`https://proyecto-web-practicas-profesionales.onrender.com/api/ofertas/${id}`, datos);
 }
 
-  // Conecta con GET -> http://localhost:3000/api/mis-ofertas/:empresaId
+  // Conecta con GET -> https://proyecto-web-practicas-profesionales.onrender.com/api/mis-ofertas/:empresaId
   obtenerMisOfertas(empresaId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.API_URL}/mis-ofertas/${empresaId}`);
   }
 
-  // Conecta con DELETE -> http://localhost:3000/api/eliminar/:id
+  // Conecta con DELETE -> https://proyecto-web-practicas-profesionales.onrender.com/api/eliminar/:id
   eliminarOferta(id: string): Observable<any> {
     return this.http.delete(`${this.API_URL}/eliminar/${id}`);
   }

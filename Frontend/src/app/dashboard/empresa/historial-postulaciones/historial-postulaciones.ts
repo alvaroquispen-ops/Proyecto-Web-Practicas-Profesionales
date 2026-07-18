@@ -93,7 +93,7 @@ export class HistorialPostulaciones implements OnInit {
   }
 
   // Base del backend para armar la URL completa de descarga de cada documento
-  backendBase: string = 'http://localhost:3000';
+  backendBase: string = 'https://proyecto-web-practicas-profesionales.onrender.com';
 
   mostrarModalDocumentos: boolean = false;
   documentosSeleccionados: { nombre: string, url: string }[] = [];

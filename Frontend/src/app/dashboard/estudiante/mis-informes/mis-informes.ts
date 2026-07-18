@@ -174,6 +174,6 @@ export class MisInformes implements OnInit {
 
   urlArchivo(archivo: { nombre: string, url: string } | undefined): string {
     if (!archivo?.url) return '#';
-    return `http://localhost:3000${archivo.url}`;
+    return `https://proyecto-web-practicas-profesionales.onrender.com${archivo.url}`;
   }
 }

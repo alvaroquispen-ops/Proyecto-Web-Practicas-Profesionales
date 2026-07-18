@@ -8,7 +8,7 @@ import { Observable, tap } from 'rxjs';
 export class AuthService {
   private http = inject(HttpClient);
   // Reemplaza el puerto 3000 por el puerto real de tu backend si es diferente
-  private readonly baseUrl = 'http://localhost:3000/api'; 
+  private readonly baseUrl = 'https://proyecto-web-practicas-profesionales.onrender.com/api'; 
 
   // Método para el Login
  // En tu auth.service.ts
